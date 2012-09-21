@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2541" systemVersion="12A248" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fx9-3d-XtI">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1875"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="2j7-2e-fUi">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Fx9-3d-XtI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="smd-aE-oir">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.21839712559999999" green="0.17147308589999999" blue="0.83695650099999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="iRo-zt-d2o" kind="relationship" relationship="rootViewController" id="MhV-aQ-3C6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ptn-au-b4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-91" y="132"/>
+        </scene>
+        <!--Test Bed View Controller-->
+        <scene sceneID="iCw-ml-ihD">
+            <objects>
+                <viewController id="iRo-zt-d2o" customClass="TestBedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QBn-bB-k3J">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" text="" id="pdK-Bc-sWe">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="XHq-fd-1wv"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            </textField>
+                            <textField translatesAutoresizingMaskIntoConstraints="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" text="" id="MuD-AV-m8c">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="AO6-WP-eta"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MuD-AV-m8c" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="41P-ez-7M5"/>
+                            <constraint firstItem="pdK-Bc-sWe" firstAttribute="leading" secondItem="QBn-bB-k3J" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="k9R-iF-bWN"/>
+                            <constraint firstItem="MuD-AV-m8c" firstAttribute="top" secondItem="QBn-bB-k3J" secondAttribute="top" constant="20" symbolic="YES" type="default" id="qrG-ch-RZi"/>
+                            <constraint firstItem="pdK-Bc-sWe" firstAttribute="top" secondItem="QBn-bB-k3J" secondAttribute="top" constant="20" symbolic="YES" type="default" id="t4A-RG-Ssb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cAY-bd-rgQ"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="leftLabel" destination="pdK-Bc-sWe" id="1Vo-X5-Zn3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MgC-DV-SVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="282" y="132"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TestBedViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TestBedViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="leftLabel" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
