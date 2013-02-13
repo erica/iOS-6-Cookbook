@@ -15,6 +15,7 @@
 @implementation TextViewController
 - (void) done
 {
+    // This is busted on iPad. Radars filed.
     [_activity activityDidFinish:YES];
 }
 
