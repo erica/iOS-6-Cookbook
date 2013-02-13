@@ -70,10 +70,17 @@ UIColor *randomColor()
 
 }
 
+- (void) reenableDeleteButton
+{
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+}
+
 - (void) delete
 {
     if (!count) return;
-    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [self performSelector:@selector(reenableDeleteButton) withObject:nil afterDelay:0.15f];
+
     count -= 1;
     NSArray *selectedItems = [self.collectionView indexPathsForSelectedItems];
     NSInteger itemNumber = selectedItems.count ? ((NSIndexPath *)selectedItems[0]).item : 0;
