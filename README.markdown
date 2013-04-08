@@ -1,5 +1,7 @@
 <h3>iOS Developer's Cookbook</h3>
-Welcome to the source code repository for the iOS 6 edition of the iOS Developer's Cookbook. Looking for the Advanced Code? It's <a href="https://github.com/erica/iOS-6-Advanced-Cookbook">here</a>!
+Welcome to the source code repository for the iOS 6 edition of the iOS Developer's Cookbook. 
+
+LOOKING FOR THE ADVANCED COOKBOOK REPOSITORY? It's <a href="https://github.com/erica/iOS-6-Advanced-Cookbook">here</a>!
 
 Sample code is never a fixed target. It continues to evolve as Apple updates its SDK and the CocoaTouch libraries. 
 
