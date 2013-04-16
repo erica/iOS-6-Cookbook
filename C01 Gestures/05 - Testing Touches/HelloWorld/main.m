@@ -85,41 +85,62 @@
 
 @implementation TestBedViewController
 
-- (CGPoint) randomPosition
-{
-    CGFloat x = random() % ((int)(self.view.bounds.size.width - 2 * HALFCIRCLE)) + HALFCIRCLE;
-    CGFloat y = random() % ((int)(self.view.bounds.size.height - 2 * HALFCIRCLE)) + HALFCIRCLE;
-    return CGPointMake(x, y);
-}
-
 #define RANDOMLEVEL	((random() % 128) / 256.0f)
 
 - (UIImage *) createImage
 {
 	UIColor *color = [UIColor colorWithRed:RANDOMLEVEL green:RANDOMLEVEL blue:RANDOMLEVEL alpha:1.0f];
-	
-	UIGraphicsBeginImageContext(CGSizeMake(SIDELENGTH, SIDELENGTH));
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	
+    
+    CGSize size = CGSizeMake(SIDELENGTH, SIDELENGTH);
+	CGRect rect = (CGRect){.size = size};
+    
+	UIGraphicsBeginImageContext(size);
+
 	// Create a filled ellipse
 	[color setFill];
-	CGRect rect = CGRectMake(0.0f, 0.0f, SIDELENGTH, SIDELENGTH);
-	CGContextAddEllipseInRect(context, rect);
-	CGContextFillPath(context);
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
+    [path fill];
 	
 	// Outline the circle a couple of times
-	CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-	CGContextAddEllipseInRect(context, CGRectInset(rect, INSET_AMT, INSET_AMT));
-	CGContextStrokePath(context);
-	CGContextAddEllipseInRect(context, CGRectInset(rect, 2*INSET_AMT, 2*INSET_AMT));
-	CGContextStrokePath(context);
+    [[UIColor whiteColor] setStroke];
+    path = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, INSET_AMT, INSET_AMT)];
+    [path appendPath:[UIBezierPath bezierPathWithOvalInRect:CGRectInset(rect, 2*INSET_AMT, 2*INSET_AMT)]];
+    [path stroke];
 	
 	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	return theImage;
 }
 
-- (void) viewDidLoad
+// Updated for orientation sensitivity, per request by Antoine
+- (CGPoint) randomPosition: (UIInterfaceOrientation) orientation
+{
+    CGRect rect = [[UIScreen mainScreen] applicationFrame];
+    CGFloat max = fmaxf(rect.size.width, rect.size.height);
+    CGFloat min = fminf(rect.size.width, rect.size.height);
+    
+    CGFloat destw = min;
+    CGFloat desth = max;
+    if (UIInterfaceOrientationIsLandscape(orientation)) {destw = max; desth = min;}
+    
+    
+    CGFloat x = random() % ((int)(destw - 2 * HALFCIRCLE)) + HALFCIRCLE;
+    CGFloat y = random() % ((int)(desth - 2 * HALFCIRCLE)) + HALFCIRCLE;
+    return CGPointMake(x, y);
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [UIView animateWithDuration:duration animations:^{
+        for (int i = 0; i < MAXCIRCLES; i++)
+        {
+            DragView *dragger = (DragView *) [self.view viewWithTag:100 + i];
+            dragger.center = [self randomPosition:toInterfaceOrientation];
+        }
+    }];
+}
+
+- (void) viewWillAppear:(BOOL)animated
 {
     self.view.backgroundColor = [UIColor blackColor];
 
@@ -127,9 +148,10 @@
     for (int i = 0; i < MAXCIRCLES; i++)
     {
         DragView *dragger = [[DragView alloc] initWithImage:[self createImage]];
-        dragger.center = [self randomPosition];
+        dragger.center = [self randomPosition:self.interfaceOrientation];
+        dragger.tag = 100 + i;
         [self.view addSubview:dragger];
-    }	
+    }
 }
 @end
 
