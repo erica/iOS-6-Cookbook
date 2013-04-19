@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E03FA9315AF643C00038069 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E03FA9215AF643C00038069 /* frame.png */; };
+		8E4A6F8A1721DFDE00C38061 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A6F891721DFDE00C38061 /* Default-568h@2x.png */; };
 		8E5AE93F15AE1BCE009DC7F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5AE93E15AE1BCE009DC7F9 /* QuartzCore.framework */; };
 		8E6D5A7D15B08B8900CBC926 /* ReflectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D5A7B15B08B8900CBC926 /* ReflectingView.m */; };
 		8E6D5A7F15B08BA300CBC926 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D5A7E15B08BA300CBC926 /* Utility.m */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		8E03FA9215AF643C00038069 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
+		8E4A6F891721DFDE00C38061 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "AppArt/Default-568h@2x.png"; sourceTree = "<group>"; };
 		8E5AE93A15AE1BB6009DC7F9 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = ../Utility/Utility.h; sourceTree = "<group>"; };
 		8E5AE93E15AE1BCE009DC7F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8E6D5A7A15B08B8900CBC926 /* ReflectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectingView.h; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				8EB9BF0D158B9B4800F96828 /* Icon.png */,
+				8E4A6F891721DFDE00C38061 /* Default-568h@2x.png */,
 				8EB9BF10158B9B7900F96828 /* Default-Landscape@2x~ipad.png */,
 				8EB9BF11158B9B7900F96828 /* Default-Landscape~ipad.png */,
 				8EB9BF12158B9B7900F96828 /* Default-Portrait@2x~ipad.png */,
@@ -210,6 +213,7 @@
 				8EB9BF20158B9B7900F96828 /* Icon~ipad.png in Resources */,
 				8EB9BF21158B9B7900F96828 /* Icon~ipad@2x.png in Resources */,
 				8E03FA9315AF643C00038069 /* frame.png in Resources */,
+				8E4A6F8A1721DFDE00C38061 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

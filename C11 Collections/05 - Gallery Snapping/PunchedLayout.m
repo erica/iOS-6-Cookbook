@@ -63,7 +63,16 @@
             offsetAdjustment = distance;
     }
     
+    CGPoint desiredPoint = CGPointMake(proposedContentOffset.x + offsetAdjustment, proposedContentOffset.y);
+    
+    if ((proposedContentOffset.x == 0) || (proposedContentOffset.x >= (self.collectionViewContentSize.width - boundsSize.width)))
+    {
+        NSNotification *note = [NSNotification notificationWithName:@"PleaseRecenter" object:[NSValue valueWithCGPoint:desiredPoint]];
+        [[NSNotificationCenter defaultCenter] postNotification:note];
+        return proposedContentOffset;
+    }
+    
     // Offset the content by the minimal centering
-    return CGPointMake(proposedContentOffset.x + offsetAdjustment, proposedContentOffset.y);
+    return desiredPoint;
 }
 @end

@@ -12,6 +12,7 @@
 @interface TestBedViewController : UICollectionViewController
 {
     NSMutableDictionary *artDictionary;
+    CGPoint desiredPoint;
 }
 @end
 
@@ -87,6 +88,19 @@
     self.title = [NSString stringWithFormat:@"%d items selected", [aCollectionView indexPathsForSelectedItems].count];
 }
 
+// Workaround for edge conditions. Hat tip Nicolas Goles
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (CGPointEqualToPoint(desiredPoint, CGRectNull.origin))
+        return;
+    
+    CGRect rect = scrollView.bounds;
+    rect.origin = desiredPoint;
+    [self.collectionView scrollRectToVisible:rect animated:YES];
+    
+    desiredPoint = CGRectNull.origin;
+}
+
 #pragma mark -
 #pragma mark Setup
 
@@ -100,10 +114,19 @@
 - (void) viewDidLoad
 {
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    self.collectionView.delegate = self;
 
     self.collectionView.backgroundColor = [UIColor blackColor];
     self.collectionView.allowsMultipleSelection = NO;
-    self.collectionView.allowsSelection = NO;
+    self.collectionView.allowsSelection = NO;    
+    
+    // Workaround for edge conditions. Hat tip Nicolas Goles
+    self.collectionView.delegate = self;
+    desiredPoint = CGRectNull.origin;
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"PleaseRecenter" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        NSValue *value = (NSValue *)note.object;
+        desiredPoint = value.CGPointValue;
+    }];
 }
 @end
 
